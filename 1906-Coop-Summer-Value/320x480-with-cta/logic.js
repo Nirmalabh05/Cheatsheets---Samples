@@ -1,0 +1,78 @@
+// Reference to the creative's various properties and elements.
+var creative = {};
+var dynamicBuilder = {};
+dynamicBuilder.data = [];
+/**
+ * Called on the window load event.
+ */
+function preInit() {
+    if (Enabler.isInitialized()) {
+        init();
+    } else {
+        Enabler.addEventListener(studio.events.StudioEvent.INIT, init);
+    }
+}
+/**
+ * Set up references to DOM elements.
+ */
+function setupDom() {
+    creative.dom = {};
+    creative.dom.mainContainer = document.querySelector('.dynamicAdvertContainer');
+    creative.dom.data = {};
+    creative.dom.data = dynamicContent.Coop[0];
+    creative.dom.data.url = 'json/coop_summer_value_copy_320x480_with_cta.json';
+}
+/**
+ * The Enabler is now initialized and any extra modules have been loaded.
+ */
+function init() {
+    setupDom();
+    buildData();
+}
+
+function buildData() {
+    var xobj = new XMLHttpRequest();
+    // var url = creative.dom.data.url;
+    var url = creative.dom.data.url;
+    xobj.overrideMimeType('application/json');
+    xobj.open('GET', url, true);
+    xobj.onreadystatechange = function() {
+        if (xobj.readyState == 4 && xobj.status == '200') {
+            var data = xobj.responseText;
+            dynamicBuilder.data = JSON.parse(data);
+            buildDOM('.dynamicAdvertContainer', dynamicBuilder.data);
+            // Polite loading
+            if (Enabler.isVisible()) {
+                show();
+            } else {
+                Enabler.addEventListener(studio.events.StudioEvent.VISIBLE, show);
+            }
+        }
+    };
+    xobj.send(null);
+}
+/**
+ *  Shows the ad.
+ */
+function show() {
+    setDynamicContent()
+    creative.dom.mainContainer.style.display = 'block';
+    startAnimation(0);
+}
+
+function setDynamicContent() {
+    // document.querySelector(".address").innerHTML = dynamicContent.Coop[0].Address;
+}
+
+function exitClickHandler() {
+    Enabler.exit('BackgroundExit');
+}
+
+
+function termsClickHandler() {
+    Enabler.exitOverride('TermsExit', 'https://www.easyjet.com/de/terms-and-conditions');
+}
+/**
+ *  Main onload handler
+ */
+window.addEventListener('load', preInit);

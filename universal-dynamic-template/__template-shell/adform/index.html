@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        document.write('<script src="' + (window.API_URL || 'https://s1.adform.net/Banners/scripts/rmb/Adform.DHTML.js?bv=' + Math.random()) + '"><\/script>');
+    </script>
+	<style>
+    body,
+    body * {
+        vertical-align: baseline;
+        border: 0 none;
+        outline: 0;
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    .dynamicAdvertContainer {
+        display: none;
+        position: absolute;
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+        border: 1px solid black;
+        box-sizing: border-box;
+        background: #EEE;
+        overflow: hidden;
+    }
+
+    :focus {
+        outline: none;
+    }
+
+    ::-moz-focus-inner {
+        border: 0;
+    }
+	</style>
+</head>
+<body>
+	<div class="dynamicAdvertContainer"></div>
+	<script src="dynamicBuilder.min.js"></script>
+	<script type="text/javascript">
+		var data = dhtml.data;
+		// Forms Admessage
+		dhtml.adMessage = Adform.AdMessage.build({
+			cid: dhtml.getVar('cid', 143406),
+			tid: dhtml.getVar('tid', 20820),
+			domain: dhtml.getVar('domain', 'http://track.adform.net/banners/'),
+			clickTAG: dhtml.getVar('clickTAG', 'http://www.adform.com/'),
+			pageSize: 1,
+		});
+		//http://s1.adform.net/Banners/Elements/Templates/143406/20820.xml template is used in this banner
+
+		// Get Admessage
+		// dhtml.adMessage.getPage(dhtml.getVar('rotseqno', 1), function (err, items, info) returns admessage rotated by rotator, if not present it shows the first one.
+		// dhtml.adMessage.getItems([dhtml.getVar('gid',217845)], function (err, items, info)  is more universal - it returns admessage defined in system even if no rotation is set.
+		dhtml.adMessage.getItems([dhtml.getVar('gid', 90354007)], function (err, items, info) {
+		// dhtml.adMessage.getPage(dhtml.getVar('rotseqno', 1), function (err, items, info) {
+			if (err) {
+				// Handle AdMessage service error
+				console.log(err.message);
+			}
+			else {
+                
+        exitClickHandler = function (e) {
+            e.stopPropagation();
+            var clickTagvalue = dhtml.getVar('clickTAG');
+            var customClicktag = clickTagvalue + ';cpdir=' + items[0]["product_deeplink"];
+            window.open(customClicktag)
+        }
+
+        document.addEventListener("click", function(e) {		
+            exitClickHandler(e);
+							
+        }, false);
+
+        var dynamicBuilder = {};
+        var xobj = new XMLHttpRequest();
+        var url = items[0]["Data_Url"];
+        xobj.overrideMimeType('application/json');
+        xobj.open('GET', url, true);
+        xobj.onreadystatechange = function () {
+          if (xobj.readyState == 4 && xobj.status == '200') {
+            var data = xobj.responseText;
+            dynamicBuilder.data = JSON.parse(data);
+            buildDOM('.dynamicAdvertContainer', dynamicBuilder.data);
+            document.getElementsByClassName('dynamicAdvertContainer')[0].style.display = 'block';
+            startAnimation(0);
+          }
+        };
+        xobj.send(null);
+			}
+		});
+	</script>
+</body>
+</html>

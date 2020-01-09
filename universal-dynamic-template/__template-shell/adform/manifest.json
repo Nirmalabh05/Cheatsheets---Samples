@@ -1,0 +1,21 @@
+{
+    "version": "1.0",
+
+    "title": "Orca creative shell 160x600", 
+    "description": "",  
+
+    "width" : "160", 
+    "height": "600", 
+
+    "events": {
+        "enabled": 1, 
+        "list": {
+            "1": "Clickout"
+         }
+    },
+
+    "clicktags": {
+            "clickTAG": "https://adform.com"
+        },
+    "source": "index.html"
+}

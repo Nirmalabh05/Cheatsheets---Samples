@@ -1,0 +1,252 @@
+/*
+COPY CLASS 
+FONT-FACE SAMPLE
+VERTICAL CENTER, VERTICAL-CENTER-FLEX
+SQUARE TO CIRCLE
+
+
+
+KEYFRAME ANIMATIONS
+    01. FadeIn 
+    02. FadeOut
+    03. SlideUp
+    04. SlideIn 
+    05. SlideOut
+    06. Scale-in
+    07. Scale-out
+    08. Pulse
+    09. Swing
+    10. Spin price-plectrum
+    11. Rotate Clock
+    12. Flash
+*/
+
+.copy {
+    width: 100%;
+    font-family: frutigerLTStd;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    line-height: 1em;
+}
+
+@font-face {
+    font-family: 'Gotham-Narrow';
+    src: url('fonts/GothamNarrow-Medium.otf') format('otf');
+    font-weight: bold;
+    font-style: normal;
+}
+
+
+/*Vertical Center*/
+
+.vertical-center {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    left: 0px;
+    right: 0px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*Vertical Center using flex*/
+.vertical-center-flex{
+    height: 150px;
+    width: 400px;
+    display: flex;
+    justify-content: center; /* align horizontal */
+    align-items: center; /* align vertical */
+}
+
+/*Vertical Center using table*/
+div {
+    display: table;
+    height: 100px;
+    width: 100%;
+    text-align: center;
+    border: 2px dashed #f69c55;
+  }
+  span {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+/* Square to Circle */
+.circle:hover{
+    border-radius:50%;
+}
+
+/*========ANIMATIONS===========*/
+
+
+/*01. FadeIn*/
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+/*02. FadeOut*/
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+
+/*03. SlideUp */
+
+@keyframes slideUp {
+    0% {
+        bottom: 0px;
+    }
+    100% {
+        bottom: 200px;
+        opacity: 1;
+    }
+}
+
+
+/*04. SlideIn */
+
+@keyframes slide-in {
+    from {
+        transform: translateY(110%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+
+/*05. SlideOut*/
+
+@keyframes slide-out {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-110%);
+    }
+}
+
+
+/*06. Scale-in */
+
+@keyframes scale-in {
+    from {
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+
+/*07. Scale-out */
+
+@keyframes scale-out {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(0);
+    }
+}
+
+/*08. Pulse*/
+@keyframes pulse {
+    0% {
+        transform: scale(0)
+    } 
+    20% {
+        transform: scale(1.1)
+    } 
+    40% {
+        transform: scale(1)
+    } 
+    60% {transform: scale(1.1)
+    } 
+    80% {transform: scale(1)
+    } 
+    100% {
+        transform: scale(1.1)
+    }
+}
+
+/*09. Swing*/
+@keyframes swing
+{
+    15%
+    {
+        -webkit-transform: translateX(5px);
+        transform: translateX(5px);
+    }
+    30%
+    {
+        -webkit-transform: translateX(-5px);
+        transform: translateX(-5px);
+    }
+    50%
+    {
+        -webkit-transform: translateX(3px);
+        transform: translateX(3px);
+    }
+    65%
+    {
+        -webkit-transform: translateX(-3px);
+        transform: translateX(-3px);
+    }
+    80%
+    {
+        -webkit-transform: translateX(2px);
+        transform: translateX(2px);
+    }
+    100%
+    {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+}
+
+/* 10. Spin price-plectrum*/
+@keyframes spin { 
+    0% { 
+        transform:rotate(0deg) translateZ(0);
+        -webkit-backface-visibility:hidden; 
+    } 
+    100% { 
+        transform:rotate(360deg) translateZ(0);
+        -webkit-backface-visibility:hidden; 
+    } 
+}
+/* 11. Rotate Clock*/
+@keyframes rotateClock{
+    from{
+        transform:rotate(-10deg);
+    }
+    to{
+        transform:rotate(10deg);
+    }
+}
+
+/* 12. Flash*/
+@keyframes flash{
+    from{
+        opacity:0;
+    }
+    to{
+        opacity:1;
+    }
+}
