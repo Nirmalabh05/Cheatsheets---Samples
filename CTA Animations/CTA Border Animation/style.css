@@ -1,0 +1,53 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.wrapper{
+    width: 300px;
+    height: 250px;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid black;
+}
+.cta-container{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.line{
+    position: absolute;
+    background: black;
+}
+.top-line, .bottom-line{
+    height: 1px;
+    width: 0px;
+    transition: width 1s ease;
+}
+.left-line, .right-line{
+    height: 0px;
+    width: 1px;
+    transition: height 1s ease;
+}
+.top-line{
+    left: -10px;  
+}
+.bottom-line{
+    bottom: 1px;
+    right: -5px;
+}
+
+.left-line{
+    bottom: 1px;
+    right: 154px;
+}
+.right-line{
+    right: -5px;
+}
+.cta-text{
+    padding: 10px;
+}

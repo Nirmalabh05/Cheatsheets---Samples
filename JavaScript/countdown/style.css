@@ -1,0 +1,23 @@
+.countdown {
+    color: black;
+    position: absolute;
+    left: 68px;
+    top: 177px;
+    width: 161px;
+  }
+.countdown-outer {
+  display: inline-block;
+  width: 22%;
+  height: 100%;
+  text-align: center;
+}
+.countdown-tag {
+  display: block;
+  font-size: 8px;
+  line-height: 0.25em;
+}
+.countdown-container {
+  top: 176px;
+  font-size: 20px;
+}
+

@@ -9,7 +9,7 @@ function setupDom() {
   creative.dom                = {};
   creative.dom.mainContainer  = document.querySelector('.dynamicAdvertContainer');
   creative.dom.data           = {};
-  creative.dom.data.url       = "variant/template.json";
+  creative.dom.data.url       = "json/template.json";
 }
 
 function init() {
